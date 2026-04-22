@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Anayna ❤️</title>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #ff6a88, #ff99ac);
+  text-align: center;
+  color: white;
+}
+
+.container {
+  max-width: 420px;
+  width: 100%;
+  padding: 20px;
+}
+
+h1 { font-size: 2.3rem; }
+p { font-size: 1.2rem; }
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 25px;
+  border: none;
+  font-size: 1rem;
+  background: white;
+  color: #ff4d6d;
+  cursor: pointer;
+}
+
+img {
+  width: 100%;
+  border-radius: 20px;
+  margin-top: 15px;
+}
+
+#letter {
+  display: none;
+  background: rgba(255,255,255,0.1);
+  padding: 15px;
+  border-radius: 15px;
+  margin-top: 15px;
+}
+
+#stars {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: url('https://www.transparenttextures.com/patterns/stardust.png');
+  opacity: 0.3;
+  z-index: -1;
+}
+
+</style>
+</head>
+<body>
+
+<div id="stars"></div>
+
+<div class="container">
+  <h1>Happy Birthday My Love ❤️</h1>
+
+  <p id="message"></p>
+
+  <button onclick="startSurprise()">Tap for Surprise 💖</button>
+  <button onclick="showLetter()">Open Love Letter 💌</button>
+  <button onclick="cutCake()">Cut Cake 🎂</button>
+  <button onclick="startFireworks()">Fireworks 🎆</button>
+  <button onclick="playMusic()">Play Music 🎵</button>
+
+  <div id="letter">
+    My Dearest Anayna ❤️<br><br>
+    You are the reason behind my smile, my happiness, and my peace. Every moment with you feels magical. I promise to always stand by you, love you, and cherish you forever. 💖<br><br>
+    Forever Yours ❤️
+  </div>
+
+  <img id="slide" src="https://picsum.photos/400/300?1">
+</div>
+
+<audio id="music" src="https://www.bensound.com/bensound-music/bensound-love.mp3"></audio>
+
+<script>
+const text = "Happy Birthday Anayna ❤️ You are my everything. I love you endlessly 💖";
+
+function typeText(text, element) {
+  let i = 0;
+  element.innerHTML = "";
+  function typing() {
+    if (i < text.length) {
+      element.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typing, 40);
+    }
+  }
+  typing();
+}
+
+function startSurprise() {
+  typeText(text, document.getElementById("message"));
+  startConfetti();
+}
+
+function showLetter() {
+  document.getElementById("letter").style.display = "block";
+}
+
+function cutCake() {
+  alert("🎂 Make a wish my love ❤️");
+  startConfetti();
+}
+
+function startConfetti() {
+  const duration = 3 * 1000;
+  const end = Date.now() + duration;
+  (function frame() {
+    confetti({ particleCount: 6, angle: 60, spread: 55, origin: { x: 0 } });
+    confetti({ particleCount: 6, angle: 120, spread: 55, origin: { x: 1 } });
+    if (Date.now() < end) requestAnimationFrame(frame);
+  })();
+}
+
+function startFireworks() {
+  const duration = 2 * 1000;
+  const end = Date.now() + duration;
+  (function frame() {
+    confetti({ particleCount: 30, spread: 140, origin: { y: Math.random() } });
+    if (Date.now() < end) requestAnimationFrame(frame);
+  })();
+}
+
+function playMusic() {
+  document.getElementById("music").play();
+}
+
+const images = [
+  "https://picsum.photos/400/300?1",
+  "https://picsum.photos/400/300?2",
+  "https://picsum.photos/400/300?3"
+];
+
+let i = 0;
+setInterval(() => {
+  i = (i + 1) % images.length;
+  document.getElementById("slide").src = images[i];
+}, 2500);
+
+window.onload = startConfetti;
+</script>
+
+</body>
+</html>
